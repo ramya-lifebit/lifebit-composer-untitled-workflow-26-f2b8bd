@@ -15,6 +15,13 @@ The present workflow is composed by the following unique components (Note that s
 **Outputs**: 3\
 **Parameters**: 33
 
+### lifebitai_traits_gcta_greml
+
+**Description**: Genetic Traits pipeline running GCTA GREML tools.\
+**Inputs**: 2\
+**Outputs**: 1\
+**Parameters**: 6
+
 ## Inputs
 
 - `--ch_user_input_vcf`: 
@@ -30,6 +37,14 @@ The present workflow is composed by the following unique components (Note that s
 
 - `--gwas_vcf_regenie_1.regenie_min_imputation_score`: Ignore variants with imputation score < threshold during regenie analysis
     - **Component**: gwas_vcf_regenie_1 
+    - Type: number
+
+- `--traits_gcta_greml_1.gwas_sample_size`: Number of samples in the input GWAS VCF
+    - **Component**: traits_gcta_greml_1 
+    - Type: number
+
+- `--traits_gcta_greml_1.other_gwas_sample_size`: Number of samples in the external GWAS VCF
+    - **Component**: traits_gcta_greml_1 
     - Type: number
 
 
@@ -181,4 +196,25 @@ The present workflow is composed by the following unique components (Note that s
     - **Component**: gwas_vcf_regenie_1 
     - Type: boolean
     - Default: `True` 
+
+- `--traits_gcta_greml_1.analysis_mode`: Mode of analysis, either heritability or genetic_correlation
+    - **Component**: traits_gcta_greml_1 
+    - Type: string
+    - Choices: `['heritability', 'genetic_correlation']` 
+    - Default: `heritability` 
+
+- `--traits_gcta_greml_1.outdir`: Output directory for the results
+    - **Component**: traits_gcta_greml_1 
+    - Type: path
+    - Default: `results/` 
+
+- `--traits_gcta_greml_1.maf_cutoff`: MAF (minor allele frequency) cutoff for variants that go into GRM (Genetic Relatedness Matrix) calculation.
+    - **Component**: traits_gcta_greml_1 
+    - Type: number
+    - Default: `0.01` 
+
+- `--traits_gcta_greml_1.grm_cutoff`:  Selectively removes one of a pair of individuals with estimated relatedness larger than the specified threshold value, maximising sample size.
+    - **Component**: traits_gcta_greml_1 
+    - Type: number
+    - Default: `0.05` 
 
